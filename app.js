@@ -1,18 +1,19 @@
 var profiler = require('v8-profiler');
-var io = require('socket.io').listen(3000);
-var exec = require('child_process').exec; 
+var exec = require('child_process').exec;
 
-io.configure(function() {
-  io.set('log level', 1);
+// socketio options
+var options = {};
+// transport setting
+var transport = process.argv.length >= 2 ? process.argv[2] : null;
+if (transport) {
+  options.transports = [transport];
+}
 
-  var transport = process.argv.length >= 2 ? process.argv[2] : null;
-  if (transport) {
-    io.set('transports', [transport]);
-  }
-});
+var io = require('socket.io')(3000, options);
+
 
 // command to read process consumed memory and cpu time
-var getCpuCommand = "ps -p " + process.pid + " -u | grep " + process.pid;
+var getCpuCommand = 'ps u -p ' + process.pid + ' | grep ' + process.pid;
 
 var users = 0;
 var countReceived = 0;
@@ -23,10 +24,10 @@ function roundNumber(num, precision) {
 }
 
 setInterval(function() {
-  var auxReceived = roundNumber(countReceived / users, 1)
+  var auxReceived = roundNumber(countReceived / users, 1);
   var msuReceived = (users > 0 ? auxReceived : 0);
 
-  var auxSended = roundNumber(countSended / users, 1)
+  var auxSended = roundNumber(countSended / users, 1);
   var msuSended = (users > 0 ? auxSended : 0);
 
   // call a system command (ps) to get current process resources utilization
@@ -73,5 +74,5 @@ io.sockets.on('connection', function(socket) {
 
   socket.on('disconnect', function() {
     users--;
-  })
+  });
 });

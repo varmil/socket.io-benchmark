@@ -1,4 +1,5 @@
 Simple socket.io benchmark.
+(forked from https://github.com/michetti/socket.io-benchmark)
 
 For now, this project should be used to benchmark socket.io implementation itself, and not projects built using it.
 
@@ -15,8 +16,8 @@ There are two tests you can run:
 
 
 Installation:
-1) 'git clone git@github.com:michetti/socket.io-benchmark.git'
-2) on created dir, 'npm install -d'
+1) 'git clone git@github.com:varmil/socket.io-benchmark.git'
+2) on created dir, 'npm install'
 3) set ulimit 'ulimit -u <desired ulimit>'
 
 * set ulimit to increase max number of opened sockets.
@@ -27,6 +28,7 @@ Run:
     * see socket.io docs for available transport
     * only websocket and xhr-polling seens to work...
     * xhr-polling acts oddly under load...
+    * Log Option, see http://socket.io/docs/migrating-from-0-9/#log-differences
 
 2)  Start clients: 'node benchmark.js <users> <rampup in seconds> <broadcast> <host> <port> &'
     Ex: 'node benchmark.js 120 60' -> one new user every 0.5 seconds, until 120 users are connected.
@@ -69,4 +71,4 @@ TODO/Brainstorm:
 
 I'm quite new to node, socket.io and benchmarking. Any help is appreciated.
 
-Tested only with node v0.4.12.
+Tested only with node v0.10.0.
