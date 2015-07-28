@@ -30,11 +30,12 @@ Run:
     * xhr-polling acts oddly under load...
     * Log Option, see http://socket.io/docs/migrating-from-0-9/#log-differences
 
-2)  Start clients: 'node benchmark.js <users> <rampup in seconds> <broadcast> <host> <port> &'
+2)  Start clients: 'node benchmark.js <users> <rampup in seconds> <interval of emitting from client(ms)> <broadcast> <host> <port> &'
     Ex: 'node benchmark.js 120 60' -> one new user every 0.5 seconds, until 120 users are connected.
 
-Broadcast, host and port parameters are optional. If not specified, then echo behaviour will be used, and it will connect to localhost on port 3000.
-Different Configu Example: 'node benchmark.js 120 60 broadcast 192.168.1.50 4040'
+interval, Broadcast, host and port parameters are optional. If not specified, then echo behaviour will be used, and it will connect to localhost on port 3000.
+Default interval is 1000 ms.
+Different Config Example: 'node benchmark.js 120 60 1500 broadcast 192.168.1.50 4040'
 
 It is better to repeat step 2 multiple times than run it one time with a lot of users, since node is monothread.
 
