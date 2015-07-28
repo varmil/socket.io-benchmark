@@ -13,8 +13,10 @@ function user(host, port) {
 
     socket.on('message', function(message) {
       console.log(new Date() - start);
-      start = new Date();
-      socket.send(message);
+      setTimeout(function() {
+        start = new Date();
+        socket.send(message);
+      }, 1000)
     });
   });
 }

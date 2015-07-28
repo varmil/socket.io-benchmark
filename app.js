@@ -31,7 +31,7 @@ setInterval(function() {
   var msuSended = (users > 0 ? auxSended : 0);
 
   // call a system command (ps) to get current process resources utilization
-  var child = exec(getCpuCommand, function(error, stdout, stderr) {
+  exec(getCpuCommand, function(error, stdout, stderr) {
     var s = stdout.split(/\s+/);
     var cpu = s[2];
     var memory = s[3];
