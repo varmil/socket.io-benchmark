@@ -20,7 +20,7 @@ function user(emitInterval, shouldBroadcast, host, port) {
     socket.on('message', function(message) {
       setTimeout(function() {
         socket.send(message);
-      }, emitInterval);
+      }, Math.round(Math.random() * 100) + emitInterval);
     });
 
     socket.on('broadcastOk', function() {
@@ -34,10 +34,10 @@ var argvIndex = 2;
 var users = parseInt(process.argv[argvIndex++]);
 var rampUpTime = parseInt(process.argv[argvIndex++]) * 1000; // in seconds
 var newUserTimeout = rampUpTime / users;
-var emitInterval = process.argv[argvIndex++] ? process.argv[argvIndex - 1]  : 1000;
+var emitInterval = process.argv[argvIndex++] ? process.argv[argvIndex - 1]  : 100;
 var shouldBroadcast = process.argv[argvIndex++] === 'broadcast' ? true : false;
 var host = process.argv[argvIndex++] ? process.argv[argvIndex - 1]  : 'localhost';
-var port = process.argv[argvIndex++] ? process.argv[argvIndex - 1]  : '3000';
+var port = process.argv[argvIndex++] ? process.argv[argvIndex - 1]  : '13451';
 
 for(var i=0; i<users; i++) {
   setTimeout(function() { user(emitInterval, shouldBroadcast, host, port); }, i * newUserTimeout);

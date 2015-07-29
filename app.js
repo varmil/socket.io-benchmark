@@ -9,7 +9,7 @@ if (transport) {
   options.transports = [transport];
 }
 
-var io = require('socket.io')(3000, options);
+var io = require('socket.io')(13451, options);
 
 
 // command to read process consumed memory and cpu time
@@ -31,10 +31,10 @@ setInterval(function() {
   var msuSended = (users > 0 ? auxSended : 0);
 
   // call a system command (ps) to get current process resources utilization
-  exec(getCpuCommand, function(error, stdout, stderr) {
-    var s = stdout.split(/\s+/);
-    var cpu = s[2];
-    var memory = s[3];
+  // exec(getCpuCommand, function(error, stdout, stderr) {
+    // var s = stdout.split(/\s+/);
+    // var cpu = s[2];
+    // var memory = s[3];
 
     var l = [
       'U: ' + users,
@@ -42,14 +42,14 @@ setInterval(function() {
       'MS/S: ' + countSended,
       'MR/S/U: ' + msuReceived,
       'MS/S/U: ' + msuSended,
-      'CPU: ' + cpu,
-      'Mem: ' + memory
+      // 'CPU: ' + cpu,
+      // 'Mem: ' + memory
     ];
 
     console.log(l.join(',\t'));
     countReceived = 0;
     countSended = 0;
-  });
+  // });
 
 }, 1000);
 
