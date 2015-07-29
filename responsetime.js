@@ -1,11 +1,18 @@
 var io = require('socket.io-client');
-
 var message = 'o bispo de constantinopla nao quer se desconstantinopolizar';
 
 function user(host, port) {
   var start = new Date();
 
-  var socket = io.connect('http://' + host + ':' + port, {'force new connection': true});
+  var socket = io.connect('http://' + host + ':' + port, {
+    'force new connection': true,
+    transports: [
+      'websocket',
+      'xhr-polling',
+      'jsonp-polling',
+      'polling'
+    ]
+  });
 
   socket.on('connect', function() {
     // send loop message
@@ -16,7 +23,7 @@ function user(host, port) {
       setTimeout(function() {
         start = new Date();
         socket.send(message);
-      }, 1000)
+      }, 1000);
     });
   });
 }

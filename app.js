@@ -4,7 +4,7 @@ var exec = require('child_process').exec;
 // socketio options
 var options = {};
 // transport setting
-var transport = process.argv.length >= 2 ? process.argv[2] : 'websocket';
+var transport = process.argv.length >= 2 ? process.argv[2] : null;
 if (transport) {
   options.transports = [transport];
 }

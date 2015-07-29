@@ -3,7 +3,6 @@ Simple socket.io benchmark.
 
 For now, this project should be used to benchmark socket.io implementation itself, and not projects built using it.
 
-
 We are building it as a tool to compare WebSocket vs Comet performance, in terms of CPU, Memory and Bandwith utilization.
 
 We choose Socket.IO, because we could run the experiment using WebSocket, and then run it again, using XHR-Polling, or JSON-Polling, by simply changing the available Transports.
@@ -23,11 +22,9 @@ Installation:
 * set ulimit to increase max number of opened sockets.
 
 Run:
-1)  Start server: 'node app.js <transport>'
-    * transport can be omitted.
-    * see socket.io docs for available transport
-    * only websocket and xhr-polling seens to work...
-    * xhr-polling acts oddly under load...
+1)  Start server: 'node app.js'
+    * 'transports' is websocket
+    * you can DEBUG=* node app.js
     * Log Option, see http://socket.io/docs/migrating-from-0-9/#log-differences
 
 2)  Start clients: 'node benchmark.js <users> <rampup in seconds> <interval of emitting from client(ms)> <broadcast> <host> <port> &'
