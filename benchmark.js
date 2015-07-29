@@ -17,27 +17,27 @@ function user(emitInterval, shouldBroadcast, host, port) {
 
   socket.on('connect', function() {
     // Start messaging loop
-    if (shouldBroadcast) {
+    // if (shouldBroadcast) {
       // message will be broadcasted by server
-      socket.emit('broadcast', message);
-    } else {
+      // socket.emit('broadcast', message);
+    // } else {
       // message will be echoed by server
-      socket.send(message);
-    }
+      // socket.send(message);
+    // }
 
-    socket.on('message', function(message) {
-      var interval = Math.round(Math.random() * emitInterval * 0.1) + emitInterval;
-      setTimeout(function() {
-        socket.send(message);
-      }, interval);
-    });
+    // socket.on('message', function(message) {
+      // var interval = Math.round(Math.random() * emitInterval * 0.1) + emitInterval;
+      // setTimeout(function() {
+      //   socket.send(message);
+      // }, interval);
+    // });
 
-    socket.on('broadcastOk', function() {
-      var interval = Math.round(Math.random() * emitInterval * 0.1) + emitInterval;
-      setTimeout(function() {
-        socket.emit('broadcast', message);
-      }, interval);
-    });
+    // socket.on('broadcastOk', function() {
+      // var interval = Math.round(Math.random() * emitInterval * 0.1) + emitInterval;
+      // setTimeout(function() {
+      //   socket.emit('broadcast', message);
+      // }, interval);
+    // });
   });
 
   socket.on('connect_error', function(reason) {

@@ -1,13 +1,12 @@
 {
-    "name": "socket.io-benchmark",
-    "version": "0.0.1",
-    "private": true,
-    "dependencies": {
-      "v8-profiler": "*",
-      "socket.io": "*",
-      "socket.io-client": "*"
-    },
-    "devDependencies": {
-
-    }
+  "name": "socket.io-benchmark",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "express": "^4.13.1",
+    "socket.io": "*",
+    "socket.io-client": "*",
+    "v8-profiler": "*"
+  },
+  "devDependencies": {}
 }
