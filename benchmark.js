@@ -20,7 +20,7 @@ function user(emitInterval, shouldBroadcast, host, port) {
     socket.on('message', function(message) {
       setTimeout(function() {
         socket.send(message);
-      }, Math.round(Math.random() * 100) + emitInterval);
+      }, Math.round(Math.random() * emitInterval * 0.1) + emitInterval);
     });
 
     socket.on('broadcastOk', function() {
