@@ -4,12 +4,12 @@ var exec = require('child_process').exec;
 // socketio options
 var options = {};
 // transport setting
-var transport = process.argv.length >= 2 ? process.argv[2] : null;
+var transport = process.argv.length >= 2 ? process.argv[2] : 'websocket';
 if (transport) {
   options.transports = [transport];
 }
 
-var io = require('socket.io')(13451, options);
+var io = require('socket.io')(3000, options);
 
 
 // command to read process consumed memory and cpu time

@@ -23,6 +23,6 @@ function user(host, port) {
 
 var argvIndex = 2;
 var host = process.argv[argvIndex++] ? process.argv[argvIndex - 1] : 'localhost';
-var port = process.argv[argvIndex++] ? process.argv[argvIndex - 1] : '13451';
+var port = process.argv[argvIndex++] ? process.argv[argvIndex - 1] : '3000';
 
 user(host, port);

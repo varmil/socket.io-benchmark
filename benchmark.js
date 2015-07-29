@@ -37,7 +37,7 @@ var newUserTimeout = rampUpTime / users;
 var emitInterval = process.argv[argvIndex++] ? process.argv[argvIndex - 1]  : 100;
 var shouldBroadcast = process.argv[argvIndex++] === 'broadcast' ? true : false;
 var host = process.argv[argvIndex++] ? process.argv[argvIndex - 1]  : 'localhost';
-var port = process.argv[argvIndex++] ? process.argv[argvIndex - 1]  : '13451';
+var port = process.argv[argvIndex++] ? process.argv[argvIndex - 1]  : '3000';
 
 for(var i=0; i<users; i++) {
   setTimeout(function() { user(emitInterval, shouldBroadcast, host, port); }, i * newUserTimeout);

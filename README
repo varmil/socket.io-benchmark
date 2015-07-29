@@ -33,7 +33,7 @@ Run:
 2)  Start clients: 'node benchmark.js <users> <rampup in seconds> <interval of emitting from client(ms)> <broadcast> <host> <port> &'
     Ex: 'node benchmark.js 120 60' -> one new user every 0.5 seconds, until 120 users are connected.
 
-interval, Broadcast, host and port parameters are optional. If not specified, then echo behaviour will be used, and it will connect to localhost on port 13451.
+interval, Broadcast, host and port parameters are optional. If not specified, then echo behaviour will be used, and it will connect to localhost on port 3000.
 Default interval is 100 ms. formula is [ Math.round(Math.random() * interval * 0.1) + interval) ]
 Different Config Example: 'node benchmark.js 120 60 1500 broadcast 192.168.1.50 4040'
 
