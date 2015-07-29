@@ -40,8 +40,12 @@ function user(emitInterval, shouldBroadcast, host, port) {
     });
   });
 
-  socket.on('error', function(reason) {
+  socket.on('connect_error', function(reason) {
     console.error(reason);
+  });
+
+  socket.on('connect_timeout', function(reason) {
+    console.error('[TIMEOUT]::', reason);
   });
 }
 

@@ -55,7 +55,7 @@ setInterval(function() {
 
 io.sockets.on('connection', function(socket) {
 
-  users++;
+  users = socket.client.conn.server.clientsCount;
 
   socket.on('message', function(message) {
     socket.send(message);
@@ -73,6 +73,6 @@ io.sockets.on('connection', function(socket) {
   });
 
   socket.on('disconnect', function() {
-    users--;
+    users = socket.client.conn.server.clientsCount;
   });
 });
