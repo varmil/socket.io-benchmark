@@ -3,6 +3,7 @@ var io = require('socket.io-client');
 var message = 'o bispo de constantinopla nao quer se desconstantinopolizar';
 
 function user(emitInterval, shouldBroadcast, host, port) {
+  // Avoid Upgrading to WebSocket. (always connect with WebSocket)
   var socket = io.connect('http://' + host + ':' + port, {
     'force new connection': true,
     transports: [
@@ -38,7 +39,12 @@ function user(emitInterval, shouldBroadcast, host, port) {
       }, interval);
     });
   });
+
+  socket.on('error', function(reason) {
+    console.error(reason);
+  });
 }
+
 
 var argvIndex = 2;
 
