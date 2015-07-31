@@ -1,16 +1,15 @@
 var profiler = require('v8-profiler');
 var exec = require('child_process').exec;
 
-// socketio options
-var options = {};
-// transport setting
-var transport = process.argv.length >= 2 ? process.argv[2] : null;
-if (transport) {
-  options.transports = [transport];
+var argvIndex = 2;
+var PORT;
+if (! process.argv[argvIndex]) {
+  return console.log('Usage: node app.js <port (int, optional)>');
+} else {
+  PORT = process.argv[argvIndex] ? process.argv[argvIndex] : '3000';
 }
 
-var io = require('socket.io')(3000, options);
-
+var io = require('socket.io')(PORT);
 
 // command to read process consumed memory and cpu time
 var getCpuCommand = 'ps u -p ' + process.pid + ' | grep ' + process.pid;
@@ -31,10 +30,10 @@ setInterval(function() {
   var msuSended = (users > 0 ? auxSended : 0);
 
   // call a system command (ps) to get current process resources utilization
-  // exec(getCpuCommand, function(error, stdout, stderr) {
-    // var s = stdout.split(/\s+/);
-    // var cpu = s[2];
-    // var memory = s[3];
+  exec(getCpuCommand, function(error, stdout, stderr) {
+    var s = stdout.split(/\s+/);
+    var cpu = s[2];
+    var memory = s[3];
 
     var l = [
       'U: ' + users,
@@ -42,14 +41,14 @@ setInterval(function() {
       'MS/S: ' + countSended,
       'MR/S/U: ' + msuReceived,
       'MS/S/U: ' + msuSended,
-      // 'CPU: ' + cpu,
-      // 'Mem: ' + memory
+      'CPU: ' + cpu,
+      'Mem: ' + memory
     ];
 
     console.log(l.join(',\t'));
     countReceived = 0;
     countSended = 0;
-  // });
+  });
 
 }, 1000);
 
